@@ -1,10 +1,15 @@
 #!/bin/bash
 # filename: {/usr,/usr/local}/bin/winpath
 # transform arg1 to full windows path
+# fixed symbolic link
 # by ijiabao
+
+readlink -f `cd $(dirname $1); pwd`/`basename $1` | sed -e 's@^/mnt/\(\w\)/@\1:/@' -e 's@/@\\@g'
+exit 0
+# 拆解: path,file为参数1, full为完整路径, real为真实路径, 最后做个正则替换
 path=`dirname "$1"`
 file=`basename "$1"`
-#测试进入当前目录，再进参数目录，再以当前目录合并文件名
-full="$(cd `pwd`; cd $path; pwd)/$file"
-#替换'/mnt/(盘符)' 为 '盘符:', 再将'/'替换为'\'
-echo $full | sed -e 's@^/mnt/\(\w\)/@\1:/@' -e 's@/@\\@g'
+full=`cd $path; pwd`/$file
+real=`readlink -f $full`
+# 盘符和斜线替换：`/mnt/d` => `d:`, `/` => `\`
+echo $real | sed -e 's@^/mnt/\(\w\)/@\1:/@' -e 's@/@\\@g'
