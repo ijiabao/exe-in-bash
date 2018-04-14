@@ -4,12 +4,12 @@
 # fixed symbolic link
 # by ijiabao
 
-[[ ${1:0:1} == "-" ]] && echo $1 && exit 0
+[[ ${1:0:1}=="-" || $1=="" ]] && echo $1 && exit 0
 
 readlink -f `cd $(dirname $1); pwd`/`basename $1` | sed -e 's@^/mnt/\(\w\)/@\1:/@' -e 's@/@\\@g'
 
 exit 0
-# fix 参数不以"-"开头
+# fix 忽略空参数，或参数以"-"开头
 # 拆解: path,file为参数1, full为完整路径, real为真实路径, 最后做个正则替换
 path=`dirname "$1"`
 file=`basename "$1"`
