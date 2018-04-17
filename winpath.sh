@@ -6,6 +6,6 @@
 # by ijiabao
 
 # fix: ignore empth, or start with "-"
-[[ ${1:0:1} = "-" || $1 = "" ]] && echo "nook" && exit 0
+[[ ${1:0:1} = "-" || $1 = "" ]] && echo "$1" && exit 0
 
 readlink -f `cd $(dirname $1); pwd`/`basename $1` | sed -e 's@^/mnt/\(\w\)/@\1:/@' -e 's@/@\\@g'
