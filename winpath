@@ -1,0 +1,12 @@
+#!/bin/bash
+# filename: {/usr,/usr/local}/bin/winpath
+# 将参数1转换为windows路径 (子系统用)
+# transform arg1 to full windows path
+# fixed symbolic link
+# by ijiabao
+
+# fix: readlink easy used && fix ends of "\n"
+
+path=`readlink -f $1 2>/dev/null`
+echo -e "$path\c" | sed -e 's@^/mnt/\(\w\)/@\1:/@' -e 's@/@\\@g'
+

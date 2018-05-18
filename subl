@@ -1,0 +1,4 @@
+#!/bin/sh
+# example for subl
+/mnt/c/Program\ Files/Sublime\ Text\ 3/subl.exe `winpath $1`
+#`winpath $1`
