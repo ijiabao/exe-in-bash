@@ -16,7 +16,7 @@ ln -sv /mnt/c/Program\ Files/Sublime\ Text\ Build\ 3143\ x64/subl.exe /usr/local
 * 注：windows的盘符挂载规则为 `/mnt/c, /mnt/d..` （ubuntu子系统，如果不是，需要修改正则替换部分)
 
 > ### 使用 (以SublimeText为例)：
-> * `copy subl.sh => /usr/bin/subl` 即可(其中的exe文件路径自已修改)
+> * 按示例创建一个/usr/local/bin/subl脚本文件（subl.exe按实际目录修改）。
 > * `这样应可以快速打开文件了： subl foo/bar/file or subl /mnt/d/foo/bar/file`
 
 ~~~sh
