@@ -9,4 +9,3 @@
 
 path=`readlink -f $1 2>/dev/null`
 echo -e "$path\c" | sed -e 's@^/mnt/\(\w\)/@\1:/@' -e 's@/@\\@g'
-
